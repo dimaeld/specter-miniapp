@@ -6,20 +6,39 @@ const APPLICATIONS_KEY = 'specter_applications_v1';
 const CONTENT_KEY = 'specter_admin_content_v1';
 const ACCESS_CODES_KEY = 'specter_access_codes_v1';
 
-const tradingCardDefaults = [
+type TradingCard = { title: string; text: string };
+type PricingPlan = { id: string; title: string; price: string; description: string };
+type AccessCode = { code: string; tariff: string; active: boolean };
+
+interface AdminContent {
+  heroTitle: string;
+  heroSubtitle: string;
+  aboutLeft: string;
+  aboutRight: string;
+  tradingCards: TradingCard[];
+  pricing: PricingPlan[];
+}
+
+const tradingCardDefaults: TradingCard[] = [
   { title: 'Трейдинг', text: 'Справжній трейдинг починається, коли ви адаптуєте фундамент під себе.' },
   { title: 'Емоційний контроль', text: 'Емоції — головний фактор, який віддаляє вас від успіху.' },
   { title: 'Дисципліна та ризик-менеджмент', text: 'Це фундамент, з якого починається розвиток трейдера.' },
   { title: 'Успіх', text: 'Успіх — це не вдача. Це важка праця, дисципліна й емоційний контроль.' }
 ];
 
-const pricingDefaults = [
+const pricingDefaults: PricingPlan[] = [
   { id: 'basic', title: 'BASIC EDUCATION', price: '289 USD', description: 'Базова освіта для тих, хто хоче структуру й фундамент.' },
   { id: 'premium', title: 'PREMIUM EDUCATION', price: '499 USD', description: 'Поглиблена програма з розборами та додатковими сесіями.' },
   { id: 'mentor', title: 'MENTORSHIP EDUCATION', price: 'Індивідуальна ціна', description: 'Індивідуальний супровід та гнучка програма.' }
 ];
 
-const defaultContent = {
+const defaultCodes: AccessCode[] = [
+  { code: 'BASIC2024', tariff: 'BASIC', active: true },
+  { code: 'PREMIUM2024', tariff: 'PREMIUM', active: true },
+  { code: 'MENTOR2024', tariff: 'MENTOR', active: true }
+];
+
+const defaultContent: AdminContent = {
   heroTitle: 'Елітна Академія Трейдингу',
   heroSubtitle: 'Емоції створюють хаос. Дисципліна створює результат.',
   aboutLeft: '',
@@ -33,9 +52,9 @@ const AdminPage = () => {
   const [error, setError] = useState('');
   const [authed, setAuthed] = useState(false);
   const [tab, setTab] = useState<'applications' | 'content' | 'codes'>('applications');
-  const [applications, setApplications] = useState(() => loadFromStorage(APPLICATIONS_KEY, []));
-  const [content, setContent] = useState(() => mergeContent(loadFromStorage(CONTENT_KEY, {})));
-  const [codes, setCodes] = useState(() => loadCodes());
+  const [applications, setApplications] = useState<any[]>(() => loadFromStorage(APPLICATIONS_KEY, []));
+  const [content, setContent] = useState<AdminContent>(() => mergeContent(loadFromStorage(CONTENT_KEY, {})));
+  const [codes, setCodes] = useState<AccessCode[]>(() => loadCodes());
 
   useEffect(() => {
     const handler = () => {
@@ -81,8 +100,8 @@ const AdminPage = () => {
     event.currentTarget.reset();
   };
 
-  const toggleCode = (code: string) => {
-    const next = codes.map((entry) => (entry.code === code ? { ...entry, active: !entry.active } : entry));
+  const toggleCode = (codeValue: string) => {
+    const next = codes.map((entry) => (entry.code === codeValue ? { ...entry, active: !entry.active } : entry));
     setCodes(next);
     localStorage.setItem(ACCESS_CODES_KEY, JSON.stringify(next));
   };
@@ -252,7 +271,7 @@ const AdminPage = () => {
               </tr>
             </thead>
             <tbody>
-              {codes.map((entry: any) => (
+              {codes.map((entry) => (
                 <tr key={entry.code}>
                   <td>{entry.code}</td>
                   <td>{entry.tariff}</td>
@@ -288,7 +307,7 @@ function loadFromStorage(key: string, fallback: any) {
   }
 }
 
-function mergeContent(raw: any) {
+function mergeContent(raw: any): AdminContent {
   return {
     ...defaultContent,
     ...raw,

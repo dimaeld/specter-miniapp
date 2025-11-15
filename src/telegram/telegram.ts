@@ -5,6 +5,14 @@ export type TelegramUser = {
   last_name?: string;
 };
 
+declare global {
+  interface Window {
+    Telegram?: {
+      WebApp?: any;
+    };
+  }
+}
+
 const tg = typeof window !== 'undefined' ? window.Telegram?.WebApp : undefined;
 
 export const initTelegramWebApp = () => {

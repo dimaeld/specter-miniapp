@@ -1,17 +1,19 @@
 import { FormEvent, useEffect, useState } from 'react';
 import styles from './ProfilePage.module.css';
-import { useAppState } from '../context/AppStateContext';
+import { useAppState, TariffType } from '../context/AppStateContext';
 import { getTelegramUser } from '../telegram/telegram';
+
+type AccessCode = { code: string; tariff: TariffType; active: boolean };
 
 const ACCESS_CODES_KEY = 'specter_access_codes_v1';
 
-const defaultCodes = [
+const defaultCodes: AccessCode[] = [
   { code: 'BASIC2024', tariff: 'BASIC', active: true },
   { code: 'PREMIUM2024', tariff: 'PREMIUM', active: true },
   { code: 'MENTOR2024', tariff: 'MENTOR', active: true }
 ];
 
-const loadCodes = () => {
+const loadCodes = (): AccessCode[] => {
   try {
     const stored = localStorage.getItem(ACCESS_CODES_KEY);
     if (!stored) {
@@ -29,7 +31,7 @@ const ProfilePage = () => {
   const telegramUser = getTelegramUser();
   const [code, setCode] = useState('');
   const [message, setMessage] = useState('');
-  const [codes, setCodes] = useState(() => loadCodes());
+  const [codes, setCodes] = useState<AccessCode[]>(() => loadCodes());
 
   useEffect(() => {
     const handleStorage = () => setCodes(loadCodes());
@@ -41,7 +43,7 @@ const ProfilePage = () => {
     event.preventDefault();
     const found = codes.find((entry) => entry.code === code.trim() && entry.active);
     if (found) {
-      setAccess(true, found.tariff as any);
+      setAccess(true, found.tariff);
       setMessage('Доступ відкрито. Ласкаво просимо в академію.');
     } else {
       setMessage('Невірний код. Перевірте, будь ласка, або зверніться до ментора.');

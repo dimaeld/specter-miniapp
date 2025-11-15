@@ -1,0 +1,10 @@
+import { jsx as _jsx } from "react/jsx-runtime";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+import { AppStateProvider } from './context/AppStateContext';
+import { initTelegramWebApp } from './telegram/telegram';
+import './styles/global.css';
+initTelegramWebApp();
+ReactDOM.createRoot(document.getElementById('root')).render(_jsx(React.StrictMode, { children: _jsx(BrowserRouter, { children: _jsx(AppStateProvider, { children: _jsx(App, {}) }) }) }));

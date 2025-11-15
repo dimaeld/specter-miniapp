@@ -2,9 +2,22 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './LandingPage.module.css';
 
+type TradingCard = { title: string; text: string };
+type PricingPlan = { id: string; title: string; price: string; description: string };
+
+interface LandingContent {
+  heroTitle: string;
+  heroSubtitle: string;
+  heroBullets: string[];
+  aboutLeft: string;
+  aboutRight: string;
+  tradingCards: TradingCard[];
+  pricing: PricingPlan[];
+}
+
 const CONTENT_KEY = 'specter_admin_content_v1';
 
-const defaultContent = {
+const defaultContent: LandingContent = {
   heroTitle: 'Елітна Академія Трейдингу',
   heroSubtitle: 'Емоції створюють хаос. Дисципліна створює результат.',
   heroBullets: [
@@ -44,7 +57,7 @@ const defaultContent = {
   ]
 };
 
-const timeline = [
+const timeline: { year: string; text: string }[] = [
   { year: '2020', text: 'Засновано SPECTERTRADER та GRAMMTRADER' },
   { year: '2021', text: 'Новий офіс у Києві' },
   { year: '2022', text: 'Нова адаптивна стратегія з унікальними підходами' }
@@ -61,7 +74,7 @@ const mentors = [
   }
 ];
 
-const loadContent = () => {
+const loadContent = (): LandingContent => {
   if (typeof window === 'undefined') return defaultContent;
   try {
     const stored = localStorage.getItem(CONTENT_KEY);
@@ -73,7 +86,7 @@ const loadContent = () => {
 };
 
 const LandingPage = () => {
-  const [content, setContent] = useState(() => loadContent());
+  const [content, setContent] = useState<LandingContent>(() => loadContent());
 
   useEffect(() => {
     const update = () => setContent(loadContent());
