@@ -1,0 +1,62 @@
+.shell {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-main);
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5vw;
+  background: rgba(241, 232, 221, 0.95);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  letter-spacing: 0.2em;
+  font-weight: 600;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.navLink {
+  letter-spacing: 0.15em;
+  padding: 0.5rem 0.75rem;
+}
+
+.navLink:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.ghostBtn {
+  border: 1px solid var(--primary);
+  padding: 0.5rem 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.floatingCta {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  background: var(--primary);
+  color: #f8f5ef;
+  padding: 0.85rem 1.75rem;
+  letter-spacing: 0.15em;
+}
+
+.footer {
+  padding: 3rem 5vw;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}

@@ -1,0 +1,67 @@
+.page {
+  display: flex;
+  justify-content: center;
+  padding: 8vh 5vw;
+}
+
+.card {
+  width: min(800px, 100%);
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+input,
+select,
+textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: #fdfaf6;
+}
+
+.fieldset {
+  grid-column: 1 / -1;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+}
+
+.checkboxRow {
+  display: inline-flex;
+  gap: 0.5rem;
+  margin-right: 1rem;
+}
+
+.fullRow {
+  grid-column: 1 / -1;
+}
+
+.summary {
+  grid-column: 1 / -1;
+  color: var(--text-muted);
+}
+
+.primaryBtn {
+  background: var(--primary);
+  color: #fff;
+  padding: 0.9rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  border: none;
+}

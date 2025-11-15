@@ -1,0 +1,169 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 8vh;
+  padding-bottom: 10vh;
+}
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding: 10vh 8vw;
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-contrast));
+  color: var(--text-main);
+}
+
+.label {
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.subtitle {
+  max-width: 540px;
+  font-size: 1.35rem;
+}
+
+.hero ul {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+}
+
+.hero ul li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.heroCtas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  background: var(--primary);
+  color: #f8f5ef;
+  padding: 0.8rem 2rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.secondaryBtn {
+  border: 1px solid var(--primary);
+  padding: 0.8rem 2rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.about,
+.cardsSection,
+.timeline,
+.mentors,
+.pricing {
+  padding: 6vh 8vw;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  white-space: pre-line;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sectionHeader {
+  margin-bottom: 2rem;
+}
+
+.cardsSection {
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 28px;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: #fff;
+  min-height: 180px;
+}
+
+.quote {
+  padding: 12vh 8vw;
+  text-align: center;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.timelineGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.timelineGrid article {
+  border-left: 3px solid var(--primary);
+  padding-left: 1rem;
+}
+
+.timelineNote {
+  margin-top: 1.5rem;
+  max-width: 640px;
+}
+
+.mentorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.mentorGrid article {
+  background: var(--primary);
+  color: #fdf9f3;
+  padding: 2rem;
+}
+
+.mentorGrid ul {
+  margin: 1.25rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.pricingGrid article {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 8vh 6vw;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    width: 100%;
+    text-align: center;
+  }
+}

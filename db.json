@@ -1,9 +1,0 @@
-{
-  "applications": [],
-  "accessCodes": [
-    { "code": "BASIC2024", "tariffType": "BASIC EDUCATION", "active": true },
-    { "code": "PREMIUM2024", "tariffType": "PREMIUM EDUCATION", "active": true },
-    { "code": "MENTOR2024", "tariffType": "MENTORSHIP EDUCATION", "active": true }
-  ],
-  "users": []
-}
