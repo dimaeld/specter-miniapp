@@ -528,11 +528,17 @@ function cacheStaticContent() {
 
 function attachEventListeners() {
   document.querySelectorAll('[data-nav]').forEach((btn) => {
-    btn.addEventListener('click', () => navigate(btn.dataset.nav));
+    btn.addEventListener('click', (event) => {
+      event.preventDefault();
+      navigate(btn.dataset.nav);
+    });
   });
 
   document.querySelectorAll('[data-action="scroll"]').forEach((btn) => {
-    btn.addEventListener('click', () => scrollToSection(btn.dataset.target));
+    btn.addEventListener('click', (event) => {
+      event.preventDefault();
+      scrollToSection(btn.dataset.target);
+    });
   });
 
   document.getElementById('floatingCta').addEventListener('click', () => openApplication());
